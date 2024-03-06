@@ -1,0 +1,3 @@
+# Dogs collection is a project for MAD demonstration.
+
+WIP...
