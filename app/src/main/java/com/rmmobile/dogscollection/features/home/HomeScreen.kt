@@ -1,0 +1,79 @@
+package com.rmmobile.dogscollection.features.home
+
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.KeyboardArrowRight
+import androidx.compose.material3.Card
+import androidx.compose.material3.Icon
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+
+@Composable
+fun HomeScreen() {
+    val listOfBreeds = listOf<String>(
+        "affenpinscher",
+        "african",
+        "airedale",
+        "akita",
+        "appenzeller",
+        "australian",
+        "shepherd",
+        "basenji",
+        "beagle",
+        "bluetick",
+        "borzoi",
+        "bouvier",
+        "boxer",
+        "brabancon",
+        "briard",
+        "buhund"
+    )
+
+    LazyColumn(
+        modifier = Modifier
+            .padding(8.dp)
+            .fillMaxWidth()
+    ) {
+        item {
+            Text(text = "Breeds Collection")
+        }
+        items(listOfBreeds) { breeds ->
+            BreedsCard(breed = breeds)
+        }
+    }
+}
+
+@Composable
+fun BreedsCard(breed: String) {
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(8.dp), shape = RoundedCornerShape(8.dp)
+    ) {
+        Row(
+            modifier = Modifier.padding(8.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.Start
+        ) {
+            Text(text = breed, fontSize = 14.sp, modifier = Modifier.weight(1f))
+            Icon(imageVector = Icons.Filled.KeyboardArrowRight, contentDescription = null)
+        }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun HomeScreenPreview() {
+    HomeScreen()
+}
