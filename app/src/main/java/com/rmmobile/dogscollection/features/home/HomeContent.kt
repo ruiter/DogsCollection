@@ -25,7 +25,7 @@ import androidx.compose.ui.unit.sp
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen() {
+fun HomeContent() {
     val listOfBreeds = listOf<String>(
         "affenpinscher",
         "african",
@@ -81,5 +81,5 @@ fun BreedsCard(breed: String) {
 @Preview(showBackground = true)
 @Composable
 fun HomeScreenPreview() {
-    HomeScreen()
+    HomeContent()
 }
