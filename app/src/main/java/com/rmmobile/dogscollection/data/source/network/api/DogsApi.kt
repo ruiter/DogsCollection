@@ -7,7 +7,7 @@ import retrofit2.http.GET
 interface DogsApi {
 
     @GET("api/breeds/list/all")
-    fun getAllBreeds(): Response<NetworkBreeds>
+    suspend fun getAllBreeds(): Response<NetworkBreeds>
 }
 
 // https://dog.ceo/api/breeds/list/all

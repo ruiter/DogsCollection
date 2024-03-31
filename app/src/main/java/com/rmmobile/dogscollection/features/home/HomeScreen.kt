@@ -17,8 +17,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.rmmobile.dogscollection.R
+import com.rmmobile.dogscollection.features.MainViewModel
 import com.rmmobile.dogscollection.features.search.SearchScreen
 
 @Composable
@@ -57,7 +59,7 @@ fun HomeScreen(viewModel: MainViewModel, navController: NavController) {
 
         Crossfade(selectedTab, label = "home_tab") {
             when (it) {
-                HomeTab.HOME -> HomeContent()
+                HomeTab.HOME -> HomeContent(homeViewModel = hiltViewModel())
                 HomeTab.SEARCH -> SearchScreen()
             }
         }

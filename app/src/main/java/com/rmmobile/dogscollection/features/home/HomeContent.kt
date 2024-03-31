@@ -1,5 +1,6 @@
 package com.rmmobile.dogscollection.features.home
 
+import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
@@ -17,45 +18,65 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.rmmobile.dogscollection.components.Loading
+import com.rmmobile.dogscollection.util.ResourceState
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeContent() {
-    val listOfBreeds = listOf<String>(
-        "affenpinscher",
-        "african",
-        "airedale",
-        "akita",
-        "appenzeller",
-        "australian",
-        "shepherd",
-        "basenji",
-        "beagle",
-        "bluetick",
-        "borzoi",
-        "bouvier",
-        "boxer",
-        "brabancon",
-        "briard",
-        "buhund"
-    )
+fun HomeContent(homeViewModel: HomeViewModel) {
+
+    val breeds by homeViewModel.breeds.collectAsState()
+
+//    val listOfBreeds = listOf<String>(
+//        "affenpinscher",
+//        "african",
+//        "airedale",
+//        "akita",
+//        "appenzeller",
+//        "australian",
+//        "shepherd",
+//        "basenji",
+//        "beagle",
+//        "bluetick",
+//        "borzoi",
+//        "bouvier",
+//        "boxer",
+//        "brabancon",
+//        "briard",
+//        "buhund"
+//    )
     
     Box(modifier = Modifier.fillMaxSize()) {
         TopAppBar(title = { Text(text = "Breeds Collection") })
-        LazyColumn(
-            modifier = Modifier
-                .padding(top = 64.dp, start = 16.dp, end = 16.dp, bottom = 48.dp)
-                .fillMaxWidth()
-        ) {
-            items(listOfBreeds) { breeds ->
-                BreedsCard(breed = breeds)
+
+        when(breeds) {
+            is ResourceState.Loading -> {
+                Log.i("ruiter", "loading state: ");
+                Loading()
+            }
+            is ResourceState.Success -> {
+                Log.i("ruiter", "success state: ");
+            }
+            is ResourceState.Error -> {
+                Log.i("ruiter", "error state: ");
             }
         }
+//        LazyColumn(
+//            modifier = Modifier
+//                .padding(top = 64.dp, start = 16.dp, end = 16.dp, bottom = 48.dp)
+//                .fillMaxWidth()
+//        ) {
+//            items(listOfBreeds) { breeds ->
+//                BreedsCard(breed = breeds)
+//            }
+//        }
     }
 }
 
@@ -81,5 +102,5 @@ fun BreedsCard(breed: String) {
 @Preview(showBackground = true)
 @Composable
 fun HomeScreenPreview() {
-    HomeContent()
+    //HomeContent()
 }
