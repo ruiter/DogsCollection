@@ -1,7 +1,9 @@
 package com.rmmobile.dogscollection.features.home
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.rmmobile.dogscollection.data.repository.Breeds
 import com.rmmobile.dogscollection.data.repository.HomeRepository
 import com.rmmobile.dogscollection.data.source.network.model.NetworkBreeds
 import com.rmmobile.dogscollection.util.ResourceState
@@ -16,8 +18,8 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(val homeRepository: HomeRepository) : ViewModel() {
 
-    private val _breeds : MutableStateFlow<ResourceState<NetworkBreeds>> = MutableStateFlow(ResourceState.Loading())
-    val breeds : StateFlow<ResourceState<NetworkBreeds>> = _breeds
+    private val _breeds : MutableStateFlow<ResourceState<List<Breeds>>> = MutableStateFlow(ResourceState.Loading())
+    val breeds : StateFlow<ResourceState<List<Breeds>>> = _breeds
 
     init {
         getAllBreeds()
@@ -30,4 +32,6 @@ class HomeViewModel @Inject constructor(val homeRepository: HomeRepository) : Vi
             }
         }
     }
+
+
 }

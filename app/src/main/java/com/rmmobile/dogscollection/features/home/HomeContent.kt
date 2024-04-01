@@ -26,6 +26,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.rmmobile.dogscollection.components.Loading
+import com.rmmobile.dogscollection.data.repository.Breeds
 import com.rmmobile.dogscollection.util.ResourceState
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -34,24 +35,7 @@ fun HomeContent(homeViewModel: HomeViewModel) {
 
     val breeds by homeViewModel.breeds.collectAsState()
 
-//    val listOfBreeds = listOf<String>(
-//        "affenpinscher",
-//        "african",
-//        "airedale",
-//        "akita",
-//        "appenzeller",
-//        "australian",
-//        "shepherd",
-//        "basenji",
-//        "beagle",
-//        "bluetick",
-//        "borzoi",
-//        "bouvier",
-//        "boxer",
-//        "brabancon",
-//        "briard",
-//        "buhund"
-//    )
+    var listOfBreeds = listOf<Breeds>()
     
     Box(modifier = Modifier.fillMaxSize()) {
         TopAppBar(title = { Text(text = "Breeds Collection") })
@@ -62,21 +46,22 @@ fun HomeContent(homeViewModel: HomeViewModel) {
                 Loading()
             }
             is ResourceState.Success -> {
-                Log.i("ruiter", "success state: ");
+                listOfBreeds = (breeds as ResourceState.Success).data
+                Log.i("ruiter", "success state: $listOfBreeds");
             }
             is ResourceState.Error -> {
                 Log.i("ruiter", "error state: ");
             }
         }
-//        LazyColumn(
-//            modifier = Modifier
-//                .padding(top = 64.dp, start = 16.dp, end = 16.dp, bottom = 48.dp)
-//                .fillMaxWidth()
-//        ) {
-//            items(listOfBreeds) { breeds ->
-//                BreedsCard(breed = breeds)
-//            }
-//        }
+        LazyColumn(
+            modifier = Modifier
+                .padding(top = 64.dp, start = 16.dp, end = 16.dp, bottom = 48.dp)
+                .fillMaxWidth()
+        ) {
+            items(listOfBreeds) { breeds ->
+                BreedsCard(breed = "teste")
+            }
+        }
     }
 }
 
