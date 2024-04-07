@@ -11,10 +11,6 @@ import javax.inject.Inject
 
 class HomeRepository @Inject constructor(private val homeDataSourceImpl: DogsDataSource) {
 
-//    suspend fun getAllBreeds(): Response<NetworkBreeds> {
-//        return homeDataSourceImpl.getAllBreeds()
-//    }
-
     suspend fun getAllBreeds(): Flow<ResourceState<List<Breeds>>> {
         return flow {
             emit(ResourceState.Loading())

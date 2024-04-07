@@ -3,6 +3,7 @@ package com.rmmobile.dogscollection.features.home
 import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -36,19 +37,21 @@ fun HomeContent(homeViewModel: HomeViewModel) {
     val breeds by homeViewModel.breeds.collectAsState()
 
     var listOfBreeds = listOf<Breeds>()
-    
+
     Box(modifier = Modifier.fillMaxSize()) {
         TopAppBar(title = { Text(text = "Breeds Collection") })
 
-        when(breeds) {
+        when (breeds) {
             is ResourceState.Loading -> {
                 Log.i("ruiter", "loading state: ");
                 Loading()
             }
+
             is ResourceState.Success -> {
                 listOfBreeds = (breeds as ResourceState.Success).data
                 Log.i("ruiter", "success state: $listOfBreeds");
             }
+
             is ResourceState.Error -> {
                 Log.i("ruiter", "error state: ");
             }
@@ -59,14 +62,14 @@ fun HomeContent(homeViewModel: HomeViewModel) {
                 .fillMaxWidth()
         ) {
             items(listOfBreeds) { breeds ->
-                BreedsCard(breed = "teste")
+                BreedsCard(breed = breeds.name, subBreed = breeds.subname)
             }
         }
     }
 }
 
 @Composable
-fun BreedsCard(breed: String) {
+fun BreedsCard(breed: String, subBreed: String) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -74,12 +77,28 @@ fun BreedsCard(breed: String) {
         shape = RoundedCornerShape(8.dp)
     ) {
         Row(
-            modifier = Modifier.padding(16.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Start
         ) {
-            Text(text = breed, fontSize = 14.sp, modifier = Modifier.weight(1f))
-            Icon(imageVector = Icons.Filled.KeyboardArrowRight, contentDescription = null)
+            Column(
+                modifier = Modifier
+                    .padding(16.dp)
+                    .weight(1f),
+                horizontalAlignment = Alignment.Start,
+                verticalArrangement = Arrangement.Center
+            ) {
+                Text(text = breed, fontSize = 16.sp)
+                Text(
+                    text = subBreed,
+                    fontSize = 14.sp,
+                    modifier = Modifier.padding(start = 8.dp)
+                )
+            }
+            Icon(
+                imageVector = Icons.Filled.KeyboardArrowRight,
+                contentDescription = null,
+                modifier = Modifier.padding(end = 8.dp)
+            )
         }
     }
 }
