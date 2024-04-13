@@ -26,6 +26,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.rmmobile.dogscollection.components.ErrorScreen
 import com.rmmobile.dogscollection.components.Loading
 import com.rmmobile.dogscollection.data.repository.Breeds
 import com.rmmobile.dogscollection.util.ResourceState
@@ -43,7 +44,6 @@ fun HomeContent(homeViewModel: HomeViewModel) {
 
         when (breeds) {
             is ResourceState.Loading -> {
-                Log.i("ruiter", "loading state: ");
                 Loading()
             }
 
@@ -53,7 +53,7 @@ fun HomeContent(homeViewModel: HomeViewModel) {
             }
 
             is ResourceState.Error -> {
-                Log.i("ruiter", "error state: ");
+                ErrorScreen()
             }
         }
         LazyColumn(

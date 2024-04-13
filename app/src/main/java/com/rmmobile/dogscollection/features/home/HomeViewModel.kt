@@ -32,6 +32,4 @@ class HomeViewModel @Inject constructor(val homeRepository: HomeRepository) : Vi
             }
         }
     }
-
-
 }
