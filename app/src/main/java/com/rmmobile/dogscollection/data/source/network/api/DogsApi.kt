@@ -11,3 +11,6 @@ interface DogsApi {
 }
 
 // https://dog.ceo/api/breeds/list/all
+
+// SINGLE RANDOM IMAGE FROM A SUB BREED COLLECTION
+// https://dog.ceo/api/breed/hound/afghan/images/random

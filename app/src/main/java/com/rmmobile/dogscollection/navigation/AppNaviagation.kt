@@ -5,6 +5,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.rmmobile.dogscollection.features.breedDetails.BreedDetailsScreen
 import com.rmmobile.dogscollection.features.home.HomeScreen
 
 @Composable
@@ -14,6 +15,9 @@ fun AppNavigation() {
     NavHost(navController = navController, startDestination = Screens.Home.route) {
         composable(route = Screens.Home.route) {
             HomeScreen(viewModel = hiltViewModel(), navController)
+        }
+        composable(route = Screens.BreedDetails.route) {
+            BreedDetailsScreen()
         }
     }
 }

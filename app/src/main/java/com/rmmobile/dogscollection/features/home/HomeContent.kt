@@ -1,6 +1,7 @@
 package com.rmmobile.dogscollection.features.home
 
 import android.util.Log
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -62,17 +63,20 @@ fun HomeContent(homeViewModel: HomeViewModel) {
                 .fillMaxWidth()
         ) {
             items(listOfBreeds) { breeds ->
-                BreedsCard(breed = breeds.name, subBreed = breeds.subname)
+                BreedsCard(breed = breeds.name, subBreed = breeds.subname) {
+                    Log.i("ruiter", "it string clicked: $it");
+                }
             }
         }
     }
 }
 
 @Composable
-fun BreedsCard(breed: String, subBreed: String) {
+fun BreedsCard(breed: String, subBreed: String, onItemClicked: (String) -> Unit) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
+            .clickable { onItemClicked(breed) }
             .padding(bottom = 8.dp),
         shape = RoundedCornerShape(8.dp)
     ) {
