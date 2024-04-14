@@ -27,14 +27,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.rmmobile.dogscollection.components.ErrorScreen
 import com.rmmobile.dogscollection.components.Loading
 import com.rmmobile.dogscollection.data.repository.Breeds
+import com.rmmobile.dogscollection.navigation.Screens
 import com.rmmobile.dogscollection.util.ResourceState
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeContent(homeViewModel: HomeViewModel) {
+fun HomeContent(homeViewModel: HomeViewModel, navController: NavController) {
 
     val breeds by homeViewModel.breeds.collectAsState()
 
@@ -63,8 +65,9 @@ fun HomeContent(homeViewModel: HomeViewModel) {
                 .fillMaxWidth()
         ) {
             items(listOfBreeds) { breeds ->
-                BreedsCard(breed = breeds.name, subBreed = breeds.subname) {
-                    Log.i("ruiter", "it string clicked: $it");
+                BreedsCard(breed = breeds.name, subBreed = breeds.subname) { breed, subBreed ->
+                    Log.i("ruiter", "it string clicked: $breed");
+                    navController.navigate(Screens.BreedDetails.route+"/$breed/$subBreed")
                 }
             }
         }
@@ -72,11 +75,11 @@ fun HomeContent(homeViewModel: HomeViewModel) {
 }
 
 @Composable
-fun BreedsCard(breed: String, subBreed: String, onItemClicked: (String) -> Unit) {
+fun BreedsCard(breed: String, subBreed: String, onItemClicked: (String, String) -> Unit) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .clickable { onItemClicked(breed) }
+            .clickable { onItemClicked(breed, subBreed) }
             .padding(bottom = 8.dp),
         shape = RoundedCornerShape(8.dp)
     ) {

@@ -59,7 +59,7 @@ fun HomeScreen(viewModel: MainViewModel, navController: NavController) {
 
         Crossfade(selectedTab, label = "home_tab") {
             when (it) {
-                HomeTab.HOME -> HomeContent(homeViewModel = hiltViewModel())
+                HomeTab.HOME -> HomeContent(homeViewModel = hiltViewModel(), navController = navController)
                 HomeTab.SEARCH -> SearchScreen()
             }
         }
