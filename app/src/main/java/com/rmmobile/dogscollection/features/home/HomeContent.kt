@@ -30,7 +30,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.rmmobile.dogscollection.components.ErrorScreen
 import com.rmmobile.dogscollection.components.Loading
-import com.rmmobile.dogscollection.data.repository.Breeds
+import com.rmmobile.dogscollection.data.repository.model.Breeds
 import com.rmmobile.dogscollection.navigation.Screens
 import com.rmmobile.dogscollection.util.ResourceState
 

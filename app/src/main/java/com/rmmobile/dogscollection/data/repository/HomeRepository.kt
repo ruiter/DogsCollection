@@ -1,21 +1,23 @@
 package com.rmmobile.dogscollection.data.repository
 
+import com.rmmobile.dogscollection.data.repository.model.BreedDetail
+import com.rmmobile.dogscollection.data.repository.model.Breeds
 import com.rmmobile.dogscollection.data.source.network.datasource.DogsDataSource
+import com.rmmobile.dogscollection.data.source.network.model.NetworkBreedDetail
 import com.rmmobile.dogscollection.data.source.network.model.NetworkBreeds
 import com.rmmobile.dogscollection.util.ResourceState
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
-import retrofit2.Response
 import javax.inject.Inject
 
-class HomeRepository @Inject constructor(private val homeDataSourceImpl: DogsDataSource) {
+class HomeRepository @Inject constructor(private val dataSourceImpl: DogsDataSource) {
 
     suspend fun getAllBreeds(): Flow<ResourceState<List<Breeds>>> {
         return flow {
             emit(ResourceState.Loading())
 
-            val response = homeDataSourceImpl.getAllBreeds()
+            val response = dataSourceImpl.getAllBreeds()
 
             if (response.isSuccessful && response.body() != null) {
                 val listOfBreeds = getBreedsFromMap(response.body()!!)

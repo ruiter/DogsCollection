@@ -1,13 +1,21 @@
 package com.rmmobile.dogscollection.data.source.network.api
 
+import com.rmmobile.dogscollection.data.source.network.model.NetworkBreedDetail
 import com.rmmobile.dogscollection.data.source.network.model.NetworkBreeds
 import retrofit2.Response
 import retrofit2.http.GET
+import retrofit2.http.Path
 
 interface DogsApi {
 
     @GET("api/breeds/list/all")
     suspend fun getAllBreeds(): Response<NetworkBreeds>
+
+    @GET("api/breed/{breed}/{subbreed}/images/random")
+    suspend fun getBreedAndSubBreed(
+        @Path("breed") breed: String,
+        @Path("subbreed") subbreed: String
+    ): Response<NetworkBreedDetail>
 }
 
 // https://dog.ceo/api/breeds/list/all

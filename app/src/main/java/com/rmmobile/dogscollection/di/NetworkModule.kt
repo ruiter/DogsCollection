@@ -1,6 +1,5 @@
 package com.rmmobile.dogscollection.di
 
-import com.rmmobile.dogscollection.data.Constants.BASE_URL
 import com.rmmobile.dogscollection.data.source.network.api.DogsApi
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -37,7 +36,7 @@ object NetworkModule {
         val moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
 
         return Retrofit.Builder()
-            .baseUrl(BASE_URL)
+            .baseUrl("https://dog.ceo/")
             .client(httpClient.build())
             .addConverterFactory(MoshiConverterFactory.create(moshi))
             .build()

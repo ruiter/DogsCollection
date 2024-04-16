@@ -1,11 +1,9 @@
 package com.rmmobile.dogscollection.features.home
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.rmmobile.dogscollection.data.repository.Breeds
+import com.rmmobile.dogscollection.data.repository.model.Breeds
 import com.rmmobile.dogscollection.data.repository.HomeRepository
-import com.rmmobile.dogscollection.data.source.network.model.NetworkBreeds
 import com.rmmobile.dogscollection.util.ResourceState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
