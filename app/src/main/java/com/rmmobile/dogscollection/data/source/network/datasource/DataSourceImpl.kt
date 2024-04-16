@@ -1,4 +1,4 @@
-package com.rmmobile.dogscollection.data.source.network
+package com.rmmobile.dogscollection.data.source.network.datasource
 
 import com.rmmobile.dogscollection.data.source.network.api.DogsApi
 import com.rmmobile.dogscollection.data.source.network.datasource.DogsDataSource

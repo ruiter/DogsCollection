@@ -1,7 +1,7 @@
 package com.rmmobile.dogscollection.data.repository
 
-import com.rmmobile.dogscollection.data.repository.model.BreedDetail
-import com.rmmobile.dogscollection.data.repository.model.Breeds
+import com.rmmobile.dogscollection.data.model.BreedDetail
+import com.rmmobile.dogscollection.data.model.Breeds
 import com.rmmobile.dogscollection.data.source.network.datasource.DogsDataSource
 import com.rmmobile.dogscollection.data.source.network.model.NetworkBreedDetail
 import com.rmmobile.dogscollection.data.source.network.model.NetworkBreeds

@@ -2,7 +2,7 @@ package com.rmmobile.dogscollection.di
 
 import com.rmmobile.dogscollection.data.repository.BreedDetailRepository
 import com.rmmobile.dogscollection.data.repository.HomeRepository
-import com.rmmobile.dogscollection.data.source.network.DataSourceImpl
+import com.rmmobile.dogscollection.data.source.network.datasource.DataSourceImpl
 import com.rmmobile.dogscollection.data.source.network.api.DogsApi
 import com.rmmobile.dogscollection.data.source.network.datasource.DogsDataSource
 import dagger.Module

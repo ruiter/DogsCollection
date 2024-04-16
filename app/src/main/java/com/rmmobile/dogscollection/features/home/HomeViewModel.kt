@@ -2,7 +2,7 @@ package com.rmmobile.dogscollection.features.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.rmmobile.dogscollection.data.repository.model.Breeds
+import com.rmmobile.dogscollection.data.model.Breeds
 import com.rmmobile.dogscollection.data.repository.HomeRepository
 import com.rmmobile.dogscollection.util.ResourceState
 import dagger.hilt.android.lifecycle.HiltViewModel
