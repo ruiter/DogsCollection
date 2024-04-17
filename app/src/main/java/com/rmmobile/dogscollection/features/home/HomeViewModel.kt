@@ -16,8 +16,9 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(val homeRepository: HomeRepository) : ViewModel() {
 
-    private val _breeds : MutableStateFlow<ResourceState<List<Breeds>>> = MutableStateFlow(ResourceState.Loading())
-    val breeds : StateFlow<ResourceState<List<Breeds>>> = _breeds
+    private val _breeds: MutableStateFlow<ResourceState<List<Breeds>>> =
+        MutableStateFlow(ResourceState.Loading())
+    val breeds: StateFlow<ResourceState<List<Breeds>>> = _breeds
 
     init {
         getAllBreeds()

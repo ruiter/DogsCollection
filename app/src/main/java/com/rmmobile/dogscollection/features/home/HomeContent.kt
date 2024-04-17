@@ -1,6 +1,5 @@
 package com.rmmobile.dogscollection.features.home
 
-import android.util.Log
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -52,7 +51,6 @@ fun HomeContent(homeViewModel: HomeViewModel, navController: NavController) {
 
             is ResourceState.Success -> {
                 listOfBreeds = (breeds as ResourceState.Success).data
-                Log.i("ruiter", "success state: $listOfBreeds");
             }
 
             is ResourceState.Error -> {
@@ -66,7 +64,6 @@ fun HomeContent(homeViewModel: HomeViewModel, navController: NavController) {
         ) {
             items(listOfBreeds) { breeds ->
                 BreedsCard(breed = breeds.name, subBreed = breeds.subname) { breed, subBreed ->
-                    Log.i("ruiter", "it string clicked: $breed");
                     navController.navigate(Screens.BreedDetails.route+"/$breed/$subBreed")
                 }
             }

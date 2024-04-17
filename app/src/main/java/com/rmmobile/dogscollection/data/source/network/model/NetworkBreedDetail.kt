@@ -1,3 +1,8 @@
 package com.rmmobile.dogscollection.data.source.network.model
 
-data class NetworkBreedDetail(val url: String)
+import com.google.gson.annotations.JsonAdapter
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
+
+@JsonClass(generateAdapter = true)
+data class NetworkBreedDetail(@field:Json(name = "message") val message: String)
