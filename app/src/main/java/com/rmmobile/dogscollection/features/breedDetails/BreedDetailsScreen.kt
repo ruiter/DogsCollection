@@ -1,8 +1,6 @@
 package com.rmmobile.dogscollection.features.breedDetails
 
-import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -19,6 +17,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
@@ -51,7 +50,7 @@ fun BreedDetailsScreen(navController: NavController, breed: String?, subBreed: S
 
             is ResourceState.Success -> {
                 breedPhotoUrl = (breedDetail as ResourceState.Success).data.url
-                BreedDetailContent(breedPhotoUrl)
+                BreedDetailContent(breedPhotoUrl = breedPhotoUrl, breed = breed, subBreed = subBreed)
             }
 
             is ResourceState.Error -> {
@@ -62,14 +61,13 @@ fun BreedDetailsScreen(navController: NavController, breed: String?, subBreed: S
 }
 
 @Composable
-fun BreedDetailContent(breedPhotoUrl: String) {
-    Log.i("ruiter", "breedPhotoUrl - $breedPhotoUrl: ")
+fun BreedDetailContent(breedPhotoUrl: String, breed: String?, subBreed: String?) {
     Column(modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center){
         AsyncImage(
             model = breedPhotoUrl,
             contentDescription = "breed photo",
             contentScale = ContentScale.Crop
         )
-        Text(text = "Content")
+        Text(text = "$breed - $subBreed", fontSize = 18.sp)
     }
 }
