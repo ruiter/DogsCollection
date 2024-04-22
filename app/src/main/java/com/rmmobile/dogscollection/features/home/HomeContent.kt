@@ -23,6 +23,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -31,6 +32,7 @@ import com.rmmobile.dogscollection.components.ErrorScreen
 import com.rmmobile.dogscollection.components.Loading
 import com.rmmobile.dogscollection.data.model.Breeds
 import com.rmmobile.dogscollection.navigation.Screens
+import com.rmmobile.dogscollection.ui.theme.ManropeFontFamily
 import com.rmmobile.dogscollection.util.ResourceState
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -64,7 +66,7 @@ fun HomeContent(homeViewModel: HomeViewModel, navController: NavController) {
         ) {
             items(listOfBreeds) { breeds ->
                 BreedsCard(breed = breeds.name, subBreed = breeds.subname) { breed, subBreed ->
-                    navController.navigate(Screens.BreedDetails.route+"/$breed/$subBreed")
+                    navController.navigate(Screens.BreedDetails.route + "/$breed/$subBreed")
                 }
             }
         }
@@ -91,10 +93,17 @@ fun BreedsCard(breed: String, subBreed: String, onItemClicked: (String, String) 
                 horizontalAlignment = Alignment.Start,
                 verticalArrangement = Arrangement.Center
             ) {
-                Text(text = breed, fontSize = 16.sp)
+                Text(
+                    text = breed,
+                    fontSize = 16.sp,
+                    fontFamily = ManropeFontFamily,
+                    fontWeight = FontWeight.Normal
+                )
                 Text(
                     text = subBreed,
                     fontSize = 14.sp,
+                    fontFamily = ManropeFontFamily,
+                    fontWeight = FontWeight.Normal,
                     modifier = Modifier.padding(start = 8.dp)
                 )
             }

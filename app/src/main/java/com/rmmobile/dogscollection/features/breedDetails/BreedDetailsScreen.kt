@@ -17,12 +17,14 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.rmmobile.dogscollection.components.ErrorScreen
 import com.rmmobile.dogscollection.components.Loading
+import com.rmmobile.dogscollection.ui.theme.ManropeFontFamily
 import com.rmmobile.dogscollection.util.ResourceState
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -37,7 +39,7 @@ fun BreedDetailsScreen(navController: NavController, breed: String?, subBreed: S
         TopAppBar(
             title = { Text(text = "Breed Detail") },
             navigationIcon = {
-                IconButton(onClick = { /* Your back navigation action */ }) {
+                IconButton(onClick = { navController.popBackStack() }) {
                     Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Navigate back")
                 }
             }
@@ -68,6 +70,6 @@ fun BreedDetailContent(breedPhotoUrl: String, breed: String?, subBreed: String?)
             contentDescription = "breed photo",
             contentScale = ContentScale.Crop
         )
-        Text(text = "$breed - $subBreed", fontSize = 18.sp)
+        Text(text = "$breed - $subBreed", fontSize = 16.sp, fontFamily = ManropeFontFamily, fontWeight = FontWeight.Medium)
     }
 }
